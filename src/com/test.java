@@ -1,5 +1,6 @@
 package com;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +27,7 @@ public class test {
         } catch (ArrayIndexOutOfBoundsException e) {
             e.printStackTrace();
         }
-
+        System.out.println("..........Collections...........");
         List<Integer> l=new ArrayList<>();
         l.add(1);
         l.add(2);
@@ -35,11 +36,33 @@ public class test {
         m.put("1",1);
         m.put("2",2);
         m.put("4",4);
+        Integer i=m.put("2",22);
+        if (i!=null){
+            System.out.println(i+ " is overrided by "+m.get("2"));
+        }
 
         for (String s : m.keySet()) {
             System.out.println(m.get(s));
 
         }
+        System.out.println("................I/O................");
+        try(InputStream is = new FileInputStream("F:\\insert_delete_wsa.sql")) {
+            byte[] b=new byte[is.available()];
+            is.read(b,0,is.available());
+            for (int j = 0; j < b.length; j++) {
+                System.out.print((char)b[j]);
+
+            }/*
+            while ((i=is.read())!=-1)
+            {
+                System.out.print((char)i.intValue());
+            }*/
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
         System.out.println("end of app............");
     }
 
