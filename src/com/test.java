@@ -62,8 +62,16 @@ public class test {
             e.printStackTrace();
         }
 
-
-
+        /*common_res cr =new common_res();
+        for (int j = 0; j < 4; j++) {
+            Thread tr = new Thread(new cur_th(cr));
+            tr.setName("Поток "+j);
+            tr.start();
+        }*/
+        System.out.println("............LAMBDA APP.............");
+        op o;
+        o=(x,e)->x+e.length();
+        System.out.println(o.calc(4,"df"));
         System.out.println("end of app............");
     }
 
@@ -80,4 +88,37 @@ class Bank<T> {
     public void  setOper(List<?> l) throws Exception{
         System.out.println(l.size());
     }
+}
+class  common_res{
+    public int x=0;
+}
+
+class cur_th implements Runnable {
+    common_res r;
+
+    public cur_th(common_res r) {
+        this.r = r;
+    }
+
+    @Override
+    public void run() {
+        synchronized (r) {
+            r.x = 1;
+            for (int i = 0; i < 4; i++) {
+                System.out.printf("%s %d \n", Thread.currentThread(), r.x);
+                r.x++;
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }
+    }
+}
+
+interface  op{
+    int calc(int x, String e);
 }
