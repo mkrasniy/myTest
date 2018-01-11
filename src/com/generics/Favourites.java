@@ -30,7 +30,6 @@ public class Favourites {
         Class<?> listClass = ArrayList.class;
 
 
-        listClass.as
 
         listClass.newInstance();
         Arrays.stream(listClass.getMethods()).map(Method::getDeclaredAnnotations).forEach(a->System.out.println(Arrays.toString(a)));
